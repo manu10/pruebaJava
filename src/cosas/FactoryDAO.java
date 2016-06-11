@@ -7,6 +7,7 @@ import classesDAO.FinalUserDAO;
 import classesDAO.GeoPointDAO;
 import classesDAO.PhotoDAO;
 import classesDAO.RatingDAO;
+import classesDAO.TrailDAO;
 import classesDAO.UserDAO;
 import interfacesDAO.IActivityDAO;
 
@@ -19,6 +20,7 @@ public class FactoryDAO {
 	private static DifficultyDAO difficultyDAO= new DifficultyDAO();
 	private static GeoPointDAO geoPointDAO= new GeoPointDAO();
 	private static PhotoDAO photoDAO= new PhotoDAO();
+	private static TrailDAO trailDAO= new TrailDAO();
 
 	public static IActivityDAO getActivityDAO(){
 		return activityDAO; //Ojo despues que no se generen muchos entity managers 
@@ -50,6 +52,10 @@ public class FactoryDAO {
 
 	public static PhotoDAO getPhotoDAO() {
 		return photoDAO;
+	}
+
+	public static TrailDAO getTrailDAO() {
+		return trailDAO;
 	}
 
 }

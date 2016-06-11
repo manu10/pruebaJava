@@ -13,11 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import classesDAO.DifficultyDAO;
+import classesDAO.FinalUserDAO;
+import classesDAO.TrailDAO;
 import cosas.EntityManFact;
 import cosas.FactoryDAO;
 import interfacesDAO.IActivityDAO;
 import model.Activity;
 import model.Difficulty;
+import model.FinalUser;
+import model.Trail;
 
 /**
  * Servlet implementation class Test
@@ -101,6 +105,26 @@ response.getWriter().append("\n\n\n\nTest de Difficulty: \n");
 		for (Difficulty difAux:list0) {response.getWriter().append("Difficulty "+i0+++": " +difAux.getName()+"\n");}
 		
 		//TODO: PROBAR RELACION CON TRAIL!
+response.getWriter().append("\n\n\n\nTest de Trail: \n");
+		
+		FinalUser owner = new FinalUser();
+		owner.setName("Manuel");
+		Trail tr = new Trail();
+		FinalUserDAO finUsrDao = FactoryDAO.getFinalUserDAO();
+		finUsrDao.create(owner);
+		tr.setActivity(act);
+		tr.setDifficulty(dif);
+		tr.setOwner(owner);
+		
+		TrailDAO trailDao = FactoryDAO.getTrailDAO();
+		tr.setName("trail muy interesante!! :)");
+		trailDao.create(tr);
+		
+		response.getWriter().append("Obtengo todas la Trails de la BBDD: \n");
+		ArrayList<Trail> list1 = (ArrayList<Trail>)trailDao.getAll();
+		i0=0;
+		for (Trail trAux:list1) {response.getWriter().append("Trail "+i0+++": " +trAux.getName()+"\n El propietario de este trail es: "+trAux.getOwner().getName());}
+
 		
 		/*
 	 Acceso a la Base de Datos
